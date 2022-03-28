@@ -15,7 +15,7 @@ public class LineaMain {
 		Linea l1 = new Linea (p1,p2);
 		//Menú
 		System.out.println("Introduce la opción deseada: \n1. Mover línea\n2. Mostrar línea\n3. Salir");
-		int opcion = teclado.nextLine().charAt(0);
+		int opcion = Integer.parseInt(teclado.nextLine());
 		switch (opcion) {
 			case (1):{
 				System.out.println("Introduce el tipo de movimiento (A-Arriba, B-Abajo, I-Izquierda, D-Derecha): ");
@@ -51,26 +51,21 @@ public class LineaMain {
 			}
 		}
 	}
-	//cual es la diferencia de hacerlo con un constructor a hacerlo con un método?
-		//Punto (String punto){
-			
-			
-		//}
 		
+	//conseguir un punto a través de un string
+	public static Punto conseguirPunto (String punto) {
+		//Dividir la cadena en los dos puntos
+		final String SEPARADOR = "-";
+		String [] partes = punto.split(SEPARADOR);
+		String parte1 = partes [0];
+		String parte2 = partes [1];
+		//Pasar esos puntos a double para crear el Punto resultado que tiene que devolver la función
+		double x, y;
+		x = Double.parseDouble(parte1);
+		y = Double.parseDouble(parte2);
+		Punto resultado = new Punto (x,y);
+		return resultado;
+	}
 		
-		//conseguir un punto a través de un string
-		public static Punto conseguirPunto (String punto) {
-			//Dividir la cadena en los dos puntos
-			final String SEPARADOR = "-";
-			String [] partes = punto.split(SEPARADOR);
-			String parte1 = partes [0];
-			String parte2 = partes [1];
-			//Pasar esos puntos a double para crear el Punto resultado que tiene que devolver la función
-			double x, y;
-			x = Double.parseDouble(parte1);
-			y = Double.parseDouble(parte2);
-			Punto resultado = new Punto (x,y);
-			return resultado;
-		}
 
 }
