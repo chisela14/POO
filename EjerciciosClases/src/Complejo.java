@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 //objetivo del ejercicios: podemos hacer de todo con los objetos creados
 
 
@@ -14,8 +16,6 @@ public class Complejo {
 	}
 	
 	//Métodos
-		//ignorar la i para las operaciones, ponerla después
-		//No he puesto la i por ningun lado porque no se como funciona
 	
 	public Complejo suma (Complejo c2) {
 		//obtener partes reales y sumarlas
@@ -54,6 +54,30 @@ public class Complejo {
 
 	public void setpImaginaria(double pImaginaria) {
 		this.pImaginaria = pImaginaria;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(pImaginaria, pReal);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Complejo other = (Complejo) obj;
+		return Double.doubleToLongBits(pImaginaria) == Double.doubleToLongBits(other.pImaginaria)
+				&& Double.doubleToLongBits(pReal) == Double.doubleToLongBits(other.pReal);
+	}
+
+	//poner la i
+	@Override
+	public String toString() {
+		return "Complejo [pReal=" + pReal + ", pImaginaria=" + pImaginaria + "]+i";
 	}
 
 	

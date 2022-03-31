@@ -19,26 +19,26 @@ public class MaquinaMain {
 				case ('1'):{
 					double bebida = m1.getCAFE();
 					int pago = hacerPago();
-					m1.vaciarMonedero(pago, bebida);
-					m1.servirBebida(bebida);
+					boolean hayDinero = m1.vaciarMonedero(pago, bebida);
+					m1.servirBebida(bebida, hayDinero);
 					break;
 				}
 				case ('2'):{
 					double bebida = m1.getLECHE();
 					int pago = hacerPago();
-					m1.vaciarMonedero(pago, bebida);
-					m1.servirBebida(bebida);
+					boolean hayDinero = m1.vaciarMonedero(pago, bebida);
+					m1.servirBebida(bebida, hayDinero);
 					break;
 				}
 				case ('3'):{
 					double bebida = m1.getCAFECONLECHE();
 					int pago = hacerPago();
-					m1.vaciarMonedero(pago, bebida);
-					m1.servirBebida(bebida);
+					boolean hayDinero = m1.vaciarMonedero(pago, bebida);
+					m1.servirBebida(bebida, hayDinero);
 					break;
 				}
 				case ('4'):{
-					m1.consultarEstado();
+					System.out.println(m1.consultarEstado());
 					break;
 				}
 			}

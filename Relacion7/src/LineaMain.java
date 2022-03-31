@@ -24,22 +24,24 @@ public class LineaMain {
 				double distancia = Double.parseDouble(teclado.nextLine());
 				switch (movimiento) {
 					case ('A'):{
-						System.out.println("La nueva línea es: " + l1.moverArriba(distancia)); 
+						l1.moverArriba(distancia); 
 						break;
 					}
 					case ('B'):{
-						System.out.println("La nueva línea es: " + l1.moverAbajo(distancia)); 
+						l1.moverAbajo(distancia); 
 						break;
 					}
 					case ('I'):{
-						System.out.println("La nueva línea es: " + l1.moverIzquierda(distancia));
+						l1.moverIzquierda(distancia);
 						break;
 					}
 					case ('D'):{
-						System.out.println("La nueva línea es: " + l1.moverDerecha(distancia)); 
+						l1.moverDerecha(distancia); 
 						break;
 					}
-				}break;
+				}	
+				System.out.println("Línea movida con éxito");
+				break;
 			}
 			case (2):{
 				System.out.println("Tu linea es: " + l1.mostrarPuntos(p1, p2));

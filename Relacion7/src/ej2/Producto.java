@@ -1,11 +1,13 @@
 package ej2;
 
+import java.util.Objects;
+
 public class Producto {
 	private int codigo;
 	private String nombre;
 	private String descripcion;
 	private double precio;
-	private final double IVA = 0.20;
+	private final static double IVA = 0.20;
 	
 	public Producto(String nombre) {
 		super();
@@ -15,16 +17,15 @@ public class Producto {
 		this.precio = 0;
 	}
 
-
 	public int generarCodigo() {
-		int resultado;
-		
+		int resultado = (int) Math.random()*10;
 		return resultado;
 		
 	}
 	
-	public void getPrecioVenta() {
+	public double getPrecioVenta() {
 		double precioVenta = precio + (precio * IVA);
+		return precioVenta;
 	}
 
 	public int getCodigo() {
@@ -53,6 +54,42 @@ public class Producto {
 
 	public double getIVA() {
 		return IVA;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigo);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Producto other = (Producto) obj;
+		return codigo == other.codigo;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio="
+				+ precio + "]";
 	}
 	
 	

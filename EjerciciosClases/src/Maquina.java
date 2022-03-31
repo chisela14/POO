@@ -5,9 +5,12 @@ public class Maquina {
 	private int depLeche;
 	private int depVasos;
 	private double monedero;
-	private final double CAFE = 1;
-	private final double LECHE = 0.8;
-	private final double CAFECONLECHE = 1.5;
+	private final static double CAFE = 1;
+	private final static double LECHE = 0.8;
+	private final static double CAFECONLECHE = 1.5;
+	private final static int TOTALCAFE = 50;
+	private final static int TOTALLECHE = 50;
+	private final static int TOTALCAFECONLECHE = 80;
 	
 	Maquina (double monedero){
 		this.monedero = monedero;
@@ -15,37 +18,51 @@ public class Maquina {
 	}
 	
 	public void llenarDepositos () {
-		this.depCafe = 50;
-		this.depLeche = 50;
-		this.depVasos = 80;
+		this.depCafe = this.TOTALCAFE;
+		this.depLeche = this.TOTALLECHE;
+		this.depVasos = this.TOTALCAFECONLECHE;
 	}
-	public boolean vaciarMonedero (double pago, double BEBIDA) {
-		double cambio = pago - BEBIDA;
-		if (this.monedero > cambio) {
-			System.out.println("Recoge tu cambio de " + cambio + " euros");
-			this.monedero = this.monedero - cambio;
-			return true;
+	
+	//El método vaciarMonedero, lo que hace es sacar el dinero de la máquina, no sirve café.
+	//no entiendo, no sirve café
+	public boolean vaciarMonedero (double pago, double bebida) {
+		if(pago>bebida) {
+			double cambio = pago - bebida;
+			if (this.monedero > cambio) {
+				System.out.println("Recoge tu cambio de " + cambio + " euros");
+				this.monedero = this.monedero - cambio;
+				return true;
+			}else {
+				System.out.println("No se puede servir, la máquina no tiene cambio");
+				return false;
+			}
 		}else {
-			System.out.println("No se puede servir, la máquina no tiene cambio");
+			System.out.println("No has introducido suficiente dinero");
 			return false;
 		}
 		
+		
 	}
-	public void consultarEstado () {
-		System.out.println("El deposito de café tiene " + this.depCafe + " unidades");
-		System.out.println("El deposito de leche tiene " + this.depLeche + " unidades");
-		System.out.println("El deposito de vasos tiene " + this.depVasos + " unidades");
-		System.out.println("El monedero " + this.monedero + " euros");
+	
+	public String consultarEstado () {
+		String resultado = "El deposito de café tiene "+ this.depCafe + " unidades\n"
+				+"El deposito de leche tiene " + this.depLeche + " unidades\n"
+				+"El deposito de vasos tiene " + this.depVasos + " unidades\n"
+				+"El monedero " + this.monedero + " euros";
+		return resultado;
 	}
-	public void servirBebida (double BEBIDA) {
-		if (this.depCafe > 0 && this.depLeche > 0 && this.depVasos > 0 ) {
-			this.monedero += BEBIDA;
+	
+	//en el método servirBebida cómo sabes que bebida tienes que servir????
+	//se la paso como parametro
+	public void servirBebida (double bebida, boolean hayDinero) {
+		if (this.depCafe > 0 && this.depLeche > 0 && this.depVasos > 0 && hayDinero == true) {
+			this.monedero += bebida;
 			this.depVasos -= 1;
-			if (BEBIDA == 1) {
+			if (bebida == 1) {
 				this.depCafe -= 1;
-			}else if (BEBIDA == 0.8) {
+			}else if (bebida == 0.8) {
 				this.depLeche -= 1;
-			}else if (BEBIDA == 1.5) {
+			}else if (bebida == 1.5) {
 				this.depCafe -= 1;
 				this.depLeche -= 1;
 			}
@@ -60,8 +77,9 @@ public class Maquina {
 	public int getDepCafe() {
 		return depCafe;
 	}
-
-	public void setDepCafe(int depCafe) {
+	//setDepositoCafe y el resto es privado, debes poner un método de reponer.
+	//no entiendo muy bien por qué
+	private void setDepCafe(int depCafe) {
 		this.depCafe = depCafe;
 	}
 
@@ -69,7 +87,7 @@ public class Maquina {
 		return depLeche;
 	}
 
-	public void setDepLeche(int depLeche) {
+	private void setDepLeche(int depLeche) {
 		this.depLeche = depLeche;
 	}
 
@@ -77,7 +95,7 @@ public class Maquina {
 		return depVasos;
 	}
 
-	public void setDepVasos(int depVasos) {
+	private void setDepVasos(int depVasos) {
 		this.depVasos = depVasos;
 	}
 

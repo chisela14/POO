@@ -22,65 +22,53 @@ public class Linea {
 	/**
 	 * Método para mover una línea hacia la derecha
 	 * @param distancia distancia a la que se desplaza
-	 * @return una nueva línea ya desplazada
 	 */
-	public Linea moverDerecha (double distancia) {
+	public void moverDerecha (double distancia) {
 		double moverA = puntoA.getX();
 		double moverB = puntoB.getX();
 		moverA = moverA + distancia;
 		moverB = moverB + distancia;
-		Punto p1 = new Punto (moverA, puntoA.getY());
-		Punto p2 = new Punto (moverB, puntoB.getY());
-		Linea resultado = new Linea (p1, p2);
-		return resultado;
+		puntoA.setX(moverA);
+		puntoB.setX(moverB);
 	}
 	
 	/**
 	 * Método para mover una línea hacia la izquierda
 	 * @param distancia distancia a la que se desplaza
-	 * @return una nueva línea ya desplazada
 	 */
-	public Linea moverIzquierda (double distancia) {
+	public void moverIzquierda (double distancia) {
 		double moverA = puntoA.getX();
 		double moverB = puntoB.getX();
 		moverA = moverA - distancia;
 		moverB = moverB - distancia;
-		Punto p1 = new Punto (moverA, puntoA.getY());
-		Punto p2 = new Punto (moverB, puntoB.getY());
-		Linea resultado = new Linea (p1, p2);
-		return resultado;
+		puntoA.setX(moverA);
+		puntoB.setX(moverB);
 	}
 	
 	/**
 	 * Método para mover una línea hacia arriba
 	 * @param distancia distancia a la que se desplaza
-	 * @return una nueva línea ya desplazada
 	 */
-	public Linea moverArriba (double distancia) {
+	public void moverArriba (double distancia) {
 		double moverA = puntoA.getY();
 		double moverB = puntoB.getY();
 		moverA = moverA + distancia;
 		moverB = moverB + distancia;
-		Punto p1 = new Punto (puntoA.getX(), moverA);
-		Punto p2 = new Punto (puntoB.getX(), moverB);
-		Linea resultado = new Linea (p1, p2);
-		return resultado;
+		puntoA.setY(moverA);
+		puntoB.setY(moverB);
 	}
 	
 	/**
 	 * Método para mover una línea hacia abajo
 	 * @param distancia distancia a la que se desplaza
-	 * @return una nueva línea ya desplazada
 	 */
-	public Linea moverAbajo (double distancia) {
+	public void moverAbajo (double distancia) {
 		double moverA = puntoA.getY();
 		double moverB = puntoB.getY();
 		moverA = moverA - distancia;
 		moverB = moverB - distancia;
-		Punto p1 = new Punto (puntoA.getX(), moverA);
-		Punto p2 = new Punto (puntoB.getX(), moverB);
-		Linea resultado = new Linea (p1, p2);
-		return resultado;
+		puntoA.setY(moverA);
+		puntoB.setY(moverB);
 	}
 	
 	/**
@@ -128,7 +116,10 @@ public class Linea {
 		this.puntoB = puntoB;
 	}
 	
-	//hashcode
+	//Esto no sé cómo se hace:
+	//Una línea es igual a otra si los puntos origen y final son iguales, 
+	//pero también si el origen es igual al final, y el final igual al origen.
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(puntoA, puntoB);
